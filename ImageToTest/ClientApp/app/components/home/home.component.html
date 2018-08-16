@@ -13,7 +13,7 @@
             {{documentName}}
             <div class="box1">
 
-                <img style="margin: 3%;" [src]="url" class="flr" width="300" height="240">
+                <img style="margin: 3%;" [src]="url"  width="450" height="320">
             </div>
             <div class="box"> 
                 <span>{{infomsg}}</span>
@@ -21,9 +21,13 @@
         </div>
         <div style="margin-top: 1%;">
             <div style="display: inline-flex;">
-                <input type='file' (change)="readUrl($event)">
+                <div>
+                    <input type='file' (change)="readUrl($event)">
+                </div>
                 <!--<button type="file" class="btn btn-primary" (change)="readUrl($event)">Convert</button>-->
-                <button type="button" class="btn btn-primary" (click)="ConvertImagetoTest()">Convert</button>
+                <div style="padding-left: 700px;">
+                    <button type="button" class="btn btn-primary" (click)="ConvertImagetoTest()">Convert</button>
+                </div>
             </div>
         </div>
     </div>

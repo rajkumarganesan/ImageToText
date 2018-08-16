@@ -156,7 +156,7 @@ div.requiredBorder {
     margin-top: 20px;
     /*margin-bottom: 74px;*/
     margin-left: 40px;
-    width: 550px;
+    width: 500px;
     overflow: auto;
     overflow-x: hidden;
     height: 372px;
@@ -171,6 +171,6 @@ div.requiredBorder {
     margin-top: 20px;
     /*margin-bottom: 74px;*/
     /*margin-left: -3%;*/
-    width: 550px;
+    width: 500px;
     height: 372px;
 }
