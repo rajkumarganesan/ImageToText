@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <Folder Include="ClientApp\Images\" />
+    <Folder Include="wwwroot\pythonscripts\prod\" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
