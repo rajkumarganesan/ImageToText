@@ -71,7 +71,7 @@ namespace ImageToTest.Controllers
                     _istallUniqueId = ImageuniqueId;
                     System.IO.File.WriteAllText(utils.getAppSettingValue("Script:Imagelog"), "");
 
-                    ExecutePythonScript(utils.getAppSettingValue("Script:PYImageProcess"), ImgURL);
+                    ExecutePythonScript(utils.getAppSettingValue("Script:PYImageProcess"));
                     string ImagetoTest = ReadText(utils.getAppSettingValue("Script:Imagelog"));
                     _installationModel.Success = true;
                     _installationModel.Information = ImagetoTest;
