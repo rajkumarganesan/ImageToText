@@ -43,18 +43,18 @@ export class HomeComponent {
             });
     }
 
-    public bootBoxMessage(Message: string = "") {
-        bootbox.dialog({
-            title: 'DA Info',
-            message: '<span style="color:red">' + Message + '</span>',
-            buttons: {
-                ok: {
-                    label: "OK",
-                    className: 'btn-info',
-                }
-            }
-        }).find('.modal-content').css({ 'margin-top': '38%', 'margin-left': '85px', 'margin-right': '- 48px', 'width': '418px' });
-    }
+    //public bootBoxMessage(Message: string = "") {
+    //    bootbox.dialog({
+    //        title: 'DA Info',
+    //        message: '<span style="color:red">' + Message + '</span>',
+    //        buttons: {
+    //            ok: {
+    //                label: "OK",
+    //                className: 'btn-info',
+    //            }
+    //        }
+    //    }).find('.modal-content').css({ 'margin-top': '38%', 'margin-left': '85px', 'margin-right': '- 48px', 'width': '418px' });
+    //}
 
  
 
