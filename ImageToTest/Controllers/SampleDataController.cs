@@ -73,6 +73,7 @@ namespace ImageToTest.Controllers
 
                     ExecutePythonScript(utils.getAppSettingValue("Script:PYImageProcess"));
                     string ImagetoTest = ReadText(utils.getAppSettingValue("Script:Imagelog"));
+                    System.Diagnostics.Debug.WriteLine(ImagetoTest);
                     _installationModel.Success = true;
                     _installationModel.Information = ImagetoTest;
                 }
@@ -101,6 +102,7 @@ namespace ImageToTest.Controllers
 
                     ExecutePythonScript(utils.getAppSettingValue("Script:PYPrintedImageProcess"));
                     string PrintedtoText = ReadText(utils.getAppSettingValue("Script:PrintedImagelog"));
+                    System.Diagnostics.Debug.WriteLine(PrintedtoText);
                     _installationModel.Success = true;
                     _installationModel.Information = PrintedtoText;
                 }
