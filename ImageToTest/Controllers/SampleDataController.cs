@@ -129,10 +129,10 @@ namespace ImageToTest.Controllers
                 if (_pdfUniqueId != ImageuniqueId)
                 {
                     _pdfUniqueId = ImageuniqueId;
-                    System.IO.File.WriteAllText(utils.getAppSettingValue("Script:PrintedImagelog"), "");
+                    System.IO.File.WriteAllText(utils.getAppSettingValue("Script:PrintedPdflog"), "");
 
-                    ExecutePythonScript(utils.getAppSettingValue("Script:PYPrintedImageProcess"));
-                    string PdftoText = ReadText(utils.getAppSettingValue("Script:PrintedImagelog"));
+                    ExecutePythonScript(utils.getAppSettingValue("Script:PYPrintedPdfProcess"));
+                    string PdftoText = ReadText(utils.getAppSettingValue("Script:PrintedPdflog"));
                     System.Diagnostics.Debug.WriteLine(PdftoText);
                     _installationModel.Success = true;
                     _installationModel.Information = PdftoText;
