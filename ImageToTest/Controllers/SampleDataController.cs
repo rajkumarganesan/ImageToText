@@ -16,7 +16,9 @@ namespace ImageToTest.Controllers
         InstallationModel _installationModel;
         IConfiguration _iconfiguration;
         utils utils;
-        public static string _istallUniqueId = "";
+        public static string _handwrittenUniqueId = "";
+        public static string _printedUniqueId = "";
+        public static string _pdfUniqueId = "";
         public static string _pythonResult = string.Empty;
         public static string _pythonErrorResult = string.Empty;
         #endregion Global Variables     
@@ -66,9 +68,9 @@ namespace ImageToTest.Controllers
             _installationModel = new InstallationModel();
             try
             {
-                if (_istallUniqueId != ImageuniqueId)
+                if (_handwrittenUniqueId != ImageuniqueId)
                 {
-                    _istallUniqueId = ImageuniqueId;
+                    _handwrittenUniqueId = ImageuniqueId;
                     System.IO.File.WriteAllText(utils.getAppSettingValue("Script:Imagelog"), "");
 
                     ExecutePythonScript(utils.getAppSettingValue("Script:PYImageProcess"));
@@ -95,9 +97,9 @@ namespace ImageToTest.Controllers
             _installationModel = new InstallationModel();
             try
             {
-                if (_istallUniqueId != ImageuniqueId)
+                if (_printedUniqueId != ImageuniqueId)
                 {
-                    _istallUniqueId = ImageuniqueId;
+                    _printedUniqueId = ImageuniqueId;
                     System.IO.File.WriteAllText(utils.getAppSettingValue("Script:PrintedImagelog"), "");
 
                     ExecutePythonScript(utils.getAppSettingValue("Script:PYPrintedImageProcess"));
@@ -116,6 +118,38 @@ namespace ImageToTest.Controllers
         }
 
         #endregion PrintedtoText
+
+        #region PDF toText
+        [HttpGet("[action]")]
+        public JsonResult PrintedPDFtoText(string ImgURL, string ImageuniqueId)
+        {
+            _installationModel = new InstallationModel();
+            try
+            {
+                if (_pdfUniqueId != ImageuniqueId)
+                {
+                    _pdfUniqueId = ImageuniqueId;
+                    System.IO.File.WriteAllText(utils.getAppSettingValue("Script:PrintedImagelog"), "");
+
+                    ExecutePythonScript(utils.getAppSettingValue("Script:PYPrintedImageProcess"));
+                    string PdftoText = ReadText(utils.getAppSettingValue("Script:PrintedImagelog"));
+                    System.Diagnostics.Debug.WriteLine(PdftoText);
+                    _installationModel.Success = true;
+                    _installationModel.Information = PdftoText;
+                }
+            }
+            catch (Exception ex)
+            {
+                _installationModel.UnhandleException = ex.Message.ToString();
+            }
+            return Json(_installationModel);
+
+        }
+
+        #endregion PDF toText
+
+
+
         private string ReadText(string Path)
         {
             StreamReader file;

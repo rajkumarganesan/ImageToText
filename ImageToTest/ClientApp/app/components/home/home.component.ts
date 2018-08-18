@@ -19,8 +19,10 @@ export class HomeComponent {
     imageName: any;
     localUrl: any;
     PrintedText: any;
+    PdftoText: any;
     //Image to text
     imagetotest: boolean = true;
+
     constructor(private http: Http, @Inject('BASE_URL') baseUrl: string, private router: Router) {
         /*Get Base URL*/
         this.baseUrl = baseUrl;
@@ -28,7 +30,7 @@ export class HomeComponent {
     }
 
     ConvertImagetoText() {
-       
+        this.infomsg = "";
        let imgurl = "http://1.bp.blogspot.com/-j2sZWroQJ9I/UdbTs41hJMI/AAAAAAAAAWY/AkNUM_tsriI/s1600/";
         this.http.get(this.baseUrl + 'api/SampleData/ConvertImagetoTest?ImgURL=' + imgurl + "&ImageuniqueId=" + new Date().getTime())
             .map(response => response.json())
@@ -40,16 +42,27 @@ export class HomeComponent {
     }
 
     ConvertPrintedtoText() {
+        this.PrintedText = "";
         let imgurl = "http://1.bp.blogspot.com/-j2sZWroQJ9I/UdbTs41hJMI/AAAAAAAAAWY/AkNUM_tsriI/s1600/";
         this.http.get(this.baseUrl + 'api/SampleData/PrintedtoText?ImgURL=' + imgurl + "&ImageuniqueId=" + new Date().getTime())
             .map(response => response.json())
-            .subscribe(data => {
-                console.log(data);
-                if (data.information != null)
-                    this.PrintedText = data.information;
+            .subscribe(PrintedtoText => {
+                console.log(PrintedtoText);
+                if (PrintedtoText.information != null)
+                    this.PrintedText = PrintedtoText.information;
             });
     }
-  
+    ConvertpdftoText() {
+        this.PdftoText = "";
+        let imgurl = "http://1.bp.blogspot.com/-j2sZWroQJ9I/UdbTs41hJMI/AAAAAAAAAWY/AkNUM_tsriI/s1600/";
+        this.http.get(this.baseUrl + 'api/SampleData/PrintedPDFtoText?ImgURL=' + imgurl + "&ImageuniqueId=" + new Date().getTime())
+            .map(response => response.json())
+            .subscribe(PrintedPdfText => {
+                console.log(PrintedPdfText);
+                if (PrintedPdfText.information != null)
+                    this.PdftoText = PrintedPdfText.information;
+            });
+    }
     readUrl(event: any) {
         if (event.target.files && event.target.files[0]) {
             let files = event.target.files[0];
