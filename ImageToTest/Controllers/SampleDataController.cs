@@ -86,6 +86,34 @@ namespace ImageToTest.Controllers
         }
 
         #endregion AI
+
+        #region PrintedtoText
+        [HttpGet("[action]")]
+        public JsonResult PrintedtoText(string ImgURL, string ImageuniqueId)
+        {
+            _installationModel = new InstallationModel();
+            try
+            {
+                if (_istallUniqueId != ImageuniqueId)
+                {
+                    _istallUniqueId = ImageuniqueId;
+                    System.IO.File.WriteAllText(utils.getAppSettingValue("Script:Imagelog"), "");
+
+                    ExecutePythonScript(utils.getAppSettingValue("Script:PYImageProcess"));
+                    string ImagetoTest = ReadText(utils.getAppSettingValue("Script:Imagelog"));
+                    _installationModel.Success = true;
+                    _installationModel.Information = ImagetoTest;
+                }
+            }
+            catch (Exception ex)
+            {
+                _installationModel.UnhandleException = ex.Message.ToString();
+            }
+            return Json(_installationModel);
+
+        }
+
+        #endregion PrintedtoText
         private string ReadText(string Path)
         {
             StreamReader file;

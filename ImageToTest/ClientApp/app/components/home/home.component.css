@@ -1,84 +1,4 @@
-﻿/*for about*/
-@import url(http://weloveiconfonts.com/api/?family=entypo);
-
-[class*="entypo-"]:before {
-    font-family: "entypo", sans-serif;
-}
-
-/*nav Bar*/
-.navbar-inverse .navbar-nav > li > a {
-    color: #fff;
-}
-
-    .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
-        color: #6493d1;
-        background-color: transparent;
-    }
-
-@import url(https://fonts.googleapis.com/css?family=Roboto:300);
-
-.login-page {
-    width: 360px;
-    padding: 8% 0 0;
-    margin: auto;
-}
-
-.form {
-    position: relative;
-    z-index: 1;
-    background: #FFFFFF;
-    max-width: 360px;
-    margin: 0 auto 100px;
-    padding: 45px;
-    text-align: center;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-}
-
-    .form input {
-        font-family: "Roboto", sans-serif;
-        outline: 0;
-        background: #f2f2f2;
-        width: 100%;
-        border: 0;
-        margin: 0 0 15px;
-        padding: 15px;
-        box-sizing: border-box;
-        font-size: 14px;
-    }
-
-    .form button {
-        font-family: "Roboto", sans-serif;
-        text-transform: uppercase;
-        outline: 0;
-        background: #3F5174;
-        width: 100%;
-        border: 0;
-        padding: 15px;
-        color: #FFFFFF;
-        font-size: 14px;
-        -webkit-transition: all 0.3 ease;
-        transition: all 0.3 ease;
-        cursor: pointer;
-    }
-
-        .form button:hover, .form button:active, .form button:focus {
-            background: #3F5174;
-        }
-
-    .form .message {
-        margin: 15px 0 0;
-        color: #b3b3b3;
-        font-size: 12px;
-    }
-
-        .form .message a {
-            color: #3F5174;
-            text-decoration: none;
-        }
-
-    .form .register-form {
-        display: none;
-    }
+﻿
 
 .container {
     position: relative;
@@ -93,60 +13,6 @@
         clear: both;
     }
 
-    .container .info {
-        margin: 50px auto;
-        text-align: center;
-    }
-
-        .container .info h1 {
-            margin: 0 0 15px;
-            padding: 0;
-            font-size: 36px;
-            font-weight: 300;
-            color: #1a1a1a;
-        }
-
-        .container .info span {
-            color: #4d4d4d;
-            font-size: 12px;
-        }
-
-            .container .info span a {
-                color: #000000;
-                text-decoration: none;
-            }
-
-            .container .info span .fa {
-                color: #EF3B3A;
-            }
-
-body {
-    background: #76b852; /* fallback for old browsers */
-    background: -webkit-linear-gradient(right, #76b852, #8DC26F);
-    background: -moz-linear-gradient(right, #76b852, #8DC26F);
-    background: -o-linear-gradient(right, #76b852, #8DC26F);
-    background: linear-gradient(to left, #76b852, #8DC26F);
-    font-family: "Roboto", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-/*Required Validation Red Border*/
-form.submitted input.ng-invalid, form.submitted textarea.ng-invalid, form.submitted .lblRequired.ng-invalid {
-    border-left: 5px solid red;
-    border-color: red;
-}
-
-form.submitted select.ng-invalid {
-    border-left: 5px solid red;
-    border-color: red;
-}
-
-div.requiredBorder {
-    border-radius: 5px;
-    border: 1px red solid;
-}
-
 .box {
     border-radius: 3px;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
@@ -156,10 +22,10 @@ div.requiredBorder {
     margin-top: 20px;
     /*margin-bottom: 74px;*/
     margin-left: 40px;
-    width: 500px;
+    width: 560px;
+    height: 390px;
     overflow: auto;
     overflow-x: hidden;
-    height: 372px;
 }
 
 .box1 {
@@ -171,6 +37,34 @@ div.requiredBorder {
     margin-top: 20px;
     /*margin-bottom: 74px;*/
     /*margin-left: -3%;*/
-    width: 500px;
-    height: 372px;
+    width: 560px;
+    height: 390px;
+}
+
+/*Zoomer*/
+.style_prevu_kit {
+    display: inline-block;
+    border: 0;
+    position: relative;
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(1);
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(1);
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(1);
+    transition: all 200ms ease-in;
+    transform: scale(1);
+}
+
+.style_prevu_kit:hover {
+    box-shadow: 0px 0px 150px #000000;
+    z-index: 2;
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(1.5);
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(1.5);
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(1.5);
+    transition: all 200ms ease-in;
+    transform: scale(1.5);
 }

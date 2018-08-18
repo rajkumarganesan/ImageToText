@@ -1,6 +1,6 @@
-<div style="margin-left: -11%">
+<div>
     <div>
-        <nav class="navbar navbar-inverse" style="background:#3F5174;margin-bottom: 0px;box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);">
+        <nav class="navbar navbar-inverse" style="width: 134%;background:#3F5174;margin-bottom: 0px;box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <a class="navbar-brand" style="color:  #fff;">Image Processing</a>
@@ -8,26 +8,51 @@
             </div>
         </nav>
     </div>
-    <div [hidden]="!imagetotest">
-        <div style="display:inline-flex">
-            <div class="box1">
+    <div style="background-color:white;border: 1px solid white;">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item active">
+                <a style="color:#3F5174;" href="#Service" role="tab" data-toggle="tab">Handwritten to Text</a>
+            </li>
+            <li class="nav-item">
+                <a style="color:#3F5174" href="#Hadoop" role="tab" data-toggle="tab">Printed Image to Text</a>
+            </li>
 
-                <img style="margin: 3%;" src="../../../Images/text5.jpg"  width="450" height="320">
+        </ul>
+    </div>
+    <div class="tab-content" style="margin-left: 120px;margin-top: 55px;">
+        <div role="tabpanel" class="tab-pane fade" id="Service">
+            <div style="display:inline-flex">
+                <div class="box1">
+                    <img style="margin: 9%;" src="../../../Images/text5.jpg" width="450" height="320" class="style_prevu_kit ">
+                </div>
+                <div class="box">
+                    <span>{{infomsg}}</span>
+                </div>
             </div>
-            <div class="box"> 
-                <span>{{infomsg}}</span>
+            <div style="margin-top: 1%;">
+                <div style="display: inline-flex;">
+                    <div style="padding-left: 486px;">
+                        <button type="button" class="btn btn-primary" (click)="ConvertImagetoText()">Handwritten Convert</button>
+                    </div>
+                </div>
             </div>
         </div>
-        <div style="margin-top: 1%;">
-            <div style="display: inline-flex;">
-                <!--<div>
-                    <input type='file' (change)="readUrl($event)">
-                </div>-->
-                <!--<button type="file" class="btn btn-primary" (change)="readUrl($event)">Convert</button>-->
-                <div style="padding-left: 486px;">
-                    <button type="button" class="btn btn-primary" (click)="ConvertImagetoTest()">Convert</button>
+        <div role="tabpanel" class="tab-pane fade" id="Hadoop">
+            <div style="display:inline-flex">
+                <div class="box1">
+                    <img style="margin: 9%;" src="../../../Images/Printer.jpg" width="450" height="320" class="style_prevu_kit">
+                </div>
+                <div class="box">
+                    <span>{{PrintedText}}</span>
+                </div>
+            </div>
+            <div style="margin-top: 1%;">
+                <div style="display: inline-flex;">
+                    <div style="padding-left: 486px;">
+                        <button type="button" class="btn btn-primary" (click)="ConvertPrintedtoText()">Printed Image Convert</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    </div>
