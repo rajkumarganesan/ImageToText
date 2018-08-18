@@ -100,9 +100,9 @@ namespace ImageToTest.Controllers
                     System.IO.File.WriteAllText(utils.getAppSettingValue("Script:PrintedImagelog"), "");
 
                     ExecutePythonScript(utils.getAppSettingValue("Script:PYPrintedImageProcess"));
-                    string ImagetoTest = ReadText(utils.getAppSettingValue("Script:PrintedImagelog"));
+                    string PrintedtoText = ReadText(utils.getAppSettingValue("Script:PrintedImagelog"));
                     _installationModel.Success = true;
-                    _installationModel.Information = ImagetoTest;
+                    _installationModel.Information = PrintedtoText;
                 }
             }
             catch (Exception ex)
