@@ -97,10 +97,10 @@ namespace ImageToTest.Controllers
                 if (_istallUniqueId != ImageuniqueId)
                 {
                     _istallUniqueId = ImageuniqueId;
-                    System.IO.File.WriteAllText(utils.getAppSettingValue("Script:Imagelog"), "");
+                    System.IO.File.WriteAllText(utils.getAppSettingValue("Script:PrintedImagelog"), "");
 
-                    ExecutePythonScript(utils.getAppSettingValue("Script:PYImageProcess"));
-                    string ImagetoTest = ReadText(utils.getAppSettingValue("Script:Imagelog"));
+                    ExecutePythonScript(utils.getAppSettingValue("Script:PYPrintedImageProcess"));
+                    string ImagetoTest = ReadText(utils.getAppSettingValue("Script:PrintedImagelog"));
                     _installationModel.Success = true;
                     _installationModel.Information = ImagetoTest;
                 }
