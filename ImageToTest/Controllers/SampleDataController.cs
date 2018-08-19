@@ -75,7 +75,7 @@ namespace ImageToTest.Controllers
                 //    _handwrittenUniqueId = ImageuniqueId;
                 System.IO.File.WriteAllText(utils.getAppSettingValue("Script:Imagelog"), "");
 
-                ExecutePythonScript(utils.getAppSettingValue("Script:PYImageProcess"), "HandWrite b" + a);
+                ExecutePythonScript(utils.getAppSettingValue("Script:PYImageProcess"), "HandWrite " + a);
                 string ImagetoTest = ReadText(utils.getAppSettingValue("Script:Imagelog"));
                 System.Diagnostics.Debug.WriteLine(ImagetoTest);
                 _installationModel.Success = true;
