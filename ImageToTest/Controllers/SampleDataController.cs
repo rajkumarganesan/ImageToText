@@ -62,23 +62,25 @@ namespace ImageToTest.Controllers
         }
 
         #region AI
-        [HttpGet("[action]")]
-        public JsonResult ConvertImagetoTest(string ImgURL, string ImageuniqueId)
+        [HttpPost("[action]")]
+        public JsonResult ConvertImagetoTest([FromBody] string strifiedData)
         {
             _installationModel = new InstallationModel();
             try
             {
-                if (_handwrittenUniqueId != ImageuniqueId)
-                {
-                    _handwrittenUniqueId = ImageuniqueId;
-                    System.IO.File.WriteAllText(utils.getAppSettingValue("Script:Imagelog"), "");
+                string a = "\"" + strifiedData + "\"";
+                //string str = "\"+strifiedData\"+";
+                //if (_handwrittenUniqueId != ImageuniqueId)
+                //{
+                //    _handwrittenUniqueId = ImageuniqueId;
+                System.IO.File.WriteAllText(utils.getAppSettingValue("Script:Imagelog"), "");
 
-                    ExecutePythonScript(utils.getAppSettingValue("Script:PYImageProcess"));
-                    string ImagetoTest = ReadText(utils.getAppSettingValue("Script:Imagelog"));
-                    System.Diagnostics.Debug.WriteLine(ImagetoTest);
-                    _installationModel.Success = true;
-                    _installationModel.Information = ImagetoTest;
-                }
+                ExecutePythonScript(utils.getAppSettingValue("Script:PYImageProcess"), "HandWrite b" + a);
+                string ImagetoTest = ReadText(utils.getAppSettingValue("Script:Imagelog"));
+                System.Diagnostics.Debug.WriteLine(ImagetoTest);
+                _installationModel.Success = true;
+                _installationModel.Information = ImagetoTest;
+                // }
             }
             catch (Exception ex)
             {

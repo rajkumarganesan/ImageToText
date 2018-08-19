@@ -26,7 +26,9 @@
         <div role="tabpanel" class="tab-pane fade in active" id="Handwrittentxt">
             <div style="display:inline-flex">
                 <div class="box1">
-                    <img style="margin: 9%;" src="../../../Images/text5.jpg" width="450" height="320" class="style_prevu_kit ">
+                    <!--<img style="margin: 9%;" src="../../../Images/text5.jpg" width="450" height="320" class="style_prevu_kit ">-->
+                    <img style="margin: 9%;" [src]="url" width="450" height="320" class="style_prevu_kit ">
+
                 </div>
                 <div class="box">
                     <span>{{infomsg}}</span>
@@ -34,6 +36,9 @@
             </div>
             <div style="margin-top: 1%;">
                 <div style="display: inline-flex;">
+                    <div>
+                        <input type='file' (change)="readUrl($event)">
+                    </div>
                     <div style="padding-left: 486px;">
                         <button type="button" class="btn btn-primary" (click)="ConvertImagetoText()">Convert</button>
                     </div>

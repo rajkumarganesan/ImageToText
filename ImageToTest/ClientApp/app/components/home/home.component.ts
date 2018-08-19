@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import "rxjs/add/operator/map";
-import { Http } from "@angular/http";
+import { Http, Headers, RequestOptions  } from "@angular/http";
 import { Router } from '@angular/router';
 import { debounce } from 'rxjs/operator/debounce';
 import { Observable } from "rxjs";
@@ -28,11 +28,20 @@ export class HomeComponent {
         this.baseUrl = baseUrl;
         this.imagetotest = true;
     }
-
+  
     ConvertImagetoText() {
         this.infomsg = "";
-       let imgurl = "http://1.bp.blogspot.com/-j2sZWroQJ9I/UdbTs41hJMI/AAAAAAAAAWY/AkNUM_tsriI/s1600/";
-        this.http.get(this.baseUrl + 'api/SampleData/ConvertImagetoTest?ImgURL=' + imgurl + "&ImageuniqueId=" + new Date().getTime())
+        // let imgurl = "http://1.bp.blogspot.com/-j2sZWroQJ9I/UdbTs41hJMI/AAAAAAAAAWY/AkNUM_tsriI/s1600/";
+        let imgurl = this.url.replace("data:image/jpeg;base64,","");
+       
+        let apiName ='api/SampleData/ConvertImagetoTest';
+        let strifiedData = imgurl;//  "test";
+        //string str = "\"How to add doublequotes\"";
+        let headers = new Headers();
+        headers.append("Content-Type", "application/json")
+        headers.append("Accept", "*/*")
+        let options = new RequestOptions({ headers: headers });
+        this.http.post(this.baseUrl + apiName, JSON.stringify(strifiedData), options)     
             .map(response => response.json())
             .subscribe(data => {
                 console.log(data);
@@ -41,10 +50,14 @@ export class HomeComponent {
             });
     }
 
+
     ConvertPrintedtoText() {
+        debugger
         this.PrintedText = "";
-        let imgurl = "http://1.bp.blogspot.com/-j2sZWroQJ9I/UdbTs41hJMI/AAAAAAAAAWY/AkNUM_tsriI/s1600/";
-        this.http.get(this.baseUrl + 'api/SampleData/PrintedtoText?ImgURL=' + imgurl + "&ImageuniqueId=" + new Date().getTime())
+      //  let imgurl = "http://1.bp.blogspot.com/-j2sZWroQJ9I/UdbTs41hJMI/AAAAAAAAAWY/AkNUM_tsriI/s1600/";
+        let imgurl = this.url;
+
+        this.http.get(this.baseUrl + 'api/SampleData/PrintedtoText?ImgURL=' + imgurl)
             .map(response => response.json())
             .subscribe(PrintedtoText => {
                 console.log(PrintedtoText);
