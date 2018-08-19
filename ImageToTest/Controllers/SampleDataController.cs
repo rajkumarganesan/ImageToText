@@ -108,7 +108,7 @@ namespace ImageToTest.Controllers
                     _printedUniqueId = ImageuniqueId;
                     System.IO.File.WriteAllText(utils.getAppSettingValue("Script:PrintedImagelog"), "");
 
-                    ExecutePythonScript(utils.getAppSettingValue("Script:PYPrintedImageProcess"));
+                    ExecutePythonScript(utils.getAppSettingValue("Script:PYPrintedImageProcess"), ImgURL);
                     string PrintedtoText = ReadText(utils.getAppSettingValue("Script:PrintedImagelog"));
                     System.Diagnostics.Debug.WriteLine(PrintedtoText);
                     _installationModel.Success = true;
