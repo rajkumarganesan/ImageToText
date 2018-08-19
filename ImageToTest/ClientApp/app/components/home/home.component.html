@@ -1,85 +1,101 @@
-<div>
-    <div>
-        <nav class="navbar navbar-inverse" style="width: 134%;background:#3F5174;margin-bottom: 0px;box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" style="color:  #fff;">Image Processing</a>
+<html>
+<body>
+        <div>
+            <nav class="navbar navbar-inverse" style="width: 134%;background:#3F5174;margin-bottom: 0px;box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" style="color:  #fff;">Image Processing</a>
+                    </div>
                 </div>
-            </div>
-        </nav>
-    </div>
-    <div style="background-color:white;border: 1px solid white;">
-        <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item active">
-                <a style="color:#3F5174;" href="#Handwrittentxt" role="tab" data-toggle="tab">Handwritten to Text</a>
-            </li>
-            <li class="nav-item">
-                <a style="color:#3F5174" href="#Printedtxt" role="tab" data-toggle="tab">Printed Image to Text</a>
-            </li>
-            <li class="nav-item">
-                <a style="color:#3F5174" href="#pdftotxt" role="tab" data-toggle="tab">PDF to Text</a>
-            </li>
+            </nav>
+        </div>
 
-        </ul>
-    </div>
-    <div class="tab-content" style="margin-left: 120px;margin-top: 55px;">
-        <div role="tabpanel" class="tab-pane fade in active" id="Handwrittentxt">
-            <div style="display:inline-flex">
-                <div class="box1">
-                    <!--<img style="margin: 9%;" src="../../../Images/text5.jpg" width="450" height="320" class="style_prevu_kit ">-->
-                    <img style="margin: 9%;" [src]="url" width="450" height="320" class="style_prevu_kit ">
+        <div>
+            <div style="background-color:white;border: 1px solid white;">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item active">
+                        <a style="color:#3F5174;" href="#Handwrittentxt" role="tab" data-toggle="tab">Handwritten to Text</a>
+                    </li>
+                    <li class="nav-item">
+                        <a style="color:#3F5174" href="#Printedtxt" role="tab" data-toggle="tab">Printed Image to Text</a>
+                    </li>
+                    <li class="nav-item">
+                        <a style="color:#3F5174" href="#pdftotxt" role="tab" data-toggle="tab">PDF to Text</a>
+                    </li>
 
-                </div>
-                <div class="box">
-                    <span>{{infomsg}}</span>
-                </div>
+                </ul>
             </div>
-            <div style="margin-top: 1%;">
-                <div style="display: inline-flex;">
-                    <div>
-                        <input type='file' (change)="readUrl($event)">
+            <div class="tab-content" style="margin-left: 97px;margin-top: 3%;">
+                <div role="tabpanel" class="tab-pane fade in active" id="Handwrittentxt">
+                    <div style="display:inline-flex">
+                        <div style="margin-left: -50px; margin-top: 20px;">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="dropdown">
+                                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Select a Node<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li *ngFor="let ImageList of ImageList">
+                                            <a style="width: 100%; text-align: justify; cursor:pointer" (click)="selectedImage(ImageList.id)">{{ImageList.taskname}}</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <!--<input type='file' (change)="readUrl($event)">-->
+                        </div>
+                        <div class="box1">
+                            <!--<img style="margin: 9%;" src="../../../Images/text12.jpg" width="450" height="320" class="style_prevu_kit ">-->
+                            <img style="margin: 9%;" src="{{imgurlHtml}}" width="450" height="320" class="style_prevu_kit ">
+                        </div>
+                        <div class="box">
+                            <span>{{infomsg}}</span>
+                        </div>
                     </div>
-                    <div style="padding-left: 486px;">
-                        <button type="button" class="btn btn-primary" (click)="ConvertImagetoText()">Convert</button>
+                    <div style="margin-top: 1%;">
+                        <div style="display: inline-flex;">
+                            
+                            <div style="padding-left: 605px;">
+                                <button type="button" class="btn btn-primary" (click)="ConvertImagetoText()">Convert</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="Printedtxt">
+                    <div style="display:inline-flex">
+                        <div class="box1">
+                            <img style="margin: 9%;" src="../../../Images/Printer.jpg" width="450" height="320" class="style_prevu_kit">
+                        </div>
+                        <div class="box">
+                            <span>{{PrintedText}}</span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1%;">
+                        <div style="display: inline-flex;">
+                            <div style="padding-left: 335px;">
+                                <button type="button" class="btn btn-primary" (click)="ConvertPrintedtoText()">Convert</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="pdftotxt">
+                    <div style="display:inline-flex">
+                        <div class="box1">
+                            <iframe [attr.src]="pdfUrl" style="width:560px; height:390px;" frameborder="0"></iframe>
+                        </div>
+                        <div class="box">
+                            <span>{{PdftoText}}</span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1%;">
+                        <div style="display: inline-flex;">
+                            <div>
+                                <input type='file' (change)="readUrl($event)">
+                            </div>
+                            <div style="padding-left: 335px;">
+                                <button type="button" class="btn btn-primary" (click)="ConvertpdftoText()">Convert</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div role="tabpanel" class="tab-pane fade" id="Printedtxt">
-            <div style="display:inline-flex">
-                <div class="box1">
-                    <img style="margin: 9%;" src="../../../Images/Printer.jpg" width="450" height="320" class="style_prevu_kit">
-                </div>
-                <div class="box">
-                    <span>{{PrintedText}}</span>
-                </div>
-            </div>
-            <div style="margin-top: 1%;">
-                <div style="display: inline-flex;">
-                    <div style="padding-left: 486px;">
-                        <button type="button" class="btn btn-primary" (click)="ConvertPrintedtoText()">Convert</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div role="tabpanel" class="tab-pane fade" id="pdftotxt">
-            <div style="display:inline-flex">
-                <div class="box1">
-                    <!--<embed src="../../../" type="application/pdf" width="450" height="320"/>-->
-                    <!--<img style="margin: 9%;" src="../../../Images/Printer.jpg" width="450" height="320" class="style_prevu_kit ">-->
-                    <iframe src="https://www.antennahouse.com/XSLsample/pdf/sample-link_1.pdf&embedded=true" style="width:560px; height:390px;" frameborder="0"></iframe>
-                </div>
-                <div class="box">
-                    <span>{{PdftoText}}</span>
-                </div>
-            </div>
-            <div style="margin-top: 1%;">
-                <div style="display: inline-flex;">
-                    <div style="padding-left: 486px;">
-                        <button type="button" class="btn btn-primary" (click)="ConvertpdftoText()">Convert</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
+</body>
+</html>
