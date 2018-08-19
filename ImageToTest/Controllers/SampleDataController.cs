@@ -73,7 +73,7 @@ namespace ImageToTest.Controllers
                 //if (_handwrittenUniqueId != ImageuniqueId)
                 //{
                 //    _handwrittenUniqueId = ImageuniqueId;
-                System.IO.File.WriteAllText(utils.getAppSettingValue("Script:Imagelog"), "");
+                //System.IO.File.WriteAllText(utils.getAppSettingValue("Script:Imagelog"), "");
 
                 ExecutePythonScript(utils.getAppSettingValue("Script:PYImageProcess"), "HandWrite " + a);
                 string ImagetoTest = ReadText(utils.getAppSettingValue("Script:Imagelog"));
