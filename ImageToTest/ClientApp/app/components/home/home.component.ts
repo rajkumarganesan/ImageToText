@@ -29,7 +29,9 @@ export class HomeComponent {
     PrintedImageList = new Array();
     imgurl: any;
     imgurlHtml: any;
-    public StatusCheck: boolean = false;
+    printedImgUrlHtml: any;
+    StatusCheck: boolean = false;
+    Loading: boolean = false;
 
     constructor(private http: Http, @Inject('BASE_URL') baseUrl: string, private router: Router, private sanitizer: DomSanitizer) {
         /*Get Base URL*/
@@ -57,7 +59,7 @@ export class HomeComponent {
     selectedPrintedImage(id: any) {
         if (id == "1") {
             this.imgurl = "printer.jpg";
-            this.imgurlHtml = require('../../../Images/Printer.jpg');
+            this.printedImgUrlHtml = require('../../../Images/Printer.jpg');
         }
     }
     selectedImage(id: any) {
@@ -155,17 +157,20 @@ export class HomeComponent {
                 //if (PrintedtoText.information != null)
                 //    this.infomsg = PrintedtoText.information;
             });
+        this.Loading = true;
         var temp = this;
         setTimeout(function () { temp.StatusCheckcall(); }, 5000);
     }
 
     public StatusCheckcall() {
+
         Observable.interval(3000).takeWhile(() => !this.StatusCheck).subscribe(x => {
             this.http.get(this.baseUrl + 'api/SampleData/StatusCheck')
                 .map(response => response.json())
                 .subscribe(data => {
                     console.log(data);
                     if (data.success == true && data.information != null) {
+                        this.Loading = false;
                         this.infomsg = data.information;
                         this.StatusCheck = true;
                     }
@@ -173,27 +178,64 @@ export class HomeComponent {
         });
     }
     ConvertPrintedtoText() {
+        this.StatusCheck = false;
         this.PrintedText = "";
-      //  let imgurl = "http://1.bp.blogspot.com/-j2sZWroQJ9I/UdbTs41hJMI/AAAAAAAAAWY/AkNUM_tsriI/s1600/";
         this.http.get(this.baseUrl + 'api/SampleData/PrintedtoText?ImgURL=' + this.imgurl + "&ImageuniqueId=" + new Date().getTime())
             .map(response => response.json())
             .subscribe(PrintedtoText => {
-                console.log(PrintedtoText);
-                if (PrintedtoText.information != null)
-                    this.PrintedText = PrintedtoText.information;
+                //console.log(PrintedtoText);
+                //if (PrintedtoText.information != null)
+                //    this.PrintedText = PrintedtoText.information;
             });
+        this.Loading = true;
+        var temp = this;
+        setTimeout(function () { temp.PrintedStatusCheck(); }, 5000);
+    }
+    public PrintedStatusCheck() {
+        Observable.interval(3000).takeWhile(() => !this.StatusCheck).subscribe(x => {
+            this.http.get(this.baseUrl + 'api/SampleData/PrintedStatusCheckCall')
+                .map(response => response.json())
+                .subscribe(data => {
+                    console.log(data);
+                    if (data.success == true && data.information != null) {
+                        this.Loading = false;
+                        this.PrintedText = data.information;
+                        this.StatusCheck = true;
+                    }
+                });
+        });
     }
     ConvertpdftoText() {
+        this.StatusCheck = false;
         this.PdftoText = "";
-        let imgurl = "http://1.bp.blogspot.com/-j2sZWroQJ9I/UdbTs41hJMI/AAAAAAAAAWY/AkNUM_tsriI/s1600/";
-        this.http.get(this.baseUrl + 'api/SampleData/PrintedPDFtoText?ImgURL=' + imgurl + "&ImageuniqueId=" + new Date().getTime())
+        this.http.get(this.baseUrl + 'api/SampleData/PrintedPDFtoText?ImgURL=' + this.imgurl + "&ImageuniqueId=" + new Date().getTime())
             .map(response => response.json())
             .subscribe(PrintedPdfText => {
-                console.log(PrintedPdfText);
-                if (PrintedPdfText.information != null)
-                    this.PdftoText = PrintedPdfText.information;
+                //console.log(PrintedPdfText);
+                //if (PrintedPdfText.information != null)
+                //    this.PdftoText = PrintedPdfText.information;
             });
+        this.Loading = true;
+        var temp = this;
+        setTimeout(function () { temp.PrintedPdfStatusCheck(); }, 5000);
     }
+
+    public PrintedPdfStatusCheck() {
+        Observable.interval(3000).takeWhile(() => !this.StatusCheck).subscribe(x => {
+            this.http.get(this.baseUrl + 'api/SampleData/PrintedPdfStatusCheckCall')
+                .map(response => response.json())
+                .subscribe(data => {
+                    console.log(data);
+                    if (data.success == true && data.information != null) {
+                        this.Loading = false;
+                        this.PdftoText = data.information;
+                        this.StatusCheck = true;
+                    }
+                });
+        });
+    }
+
+
     readUrl(event: any) {
         if (event.target.files && event.target.files[0]) {
             let files = event.target.files[0];

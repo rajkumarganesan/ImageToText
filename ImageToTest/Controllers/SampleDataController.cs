@@ -65,12 +65,10 @@ namespace ImageToTest.Controllers
 
         [HttpGet("[action]")]
         public JsonResult ConvertImagetoTest(string ImgURL, string ImageuniqueId)
-
         {
             _installationModel = new InstallationModel();
             try
             {
-
                 if (_handwrittenUniqueId != ImageuniqueId)
                 {
                     _handwrittenUniqueId = ImageuniqueId;
@@ -108,16 +106,12 @@ namespace ImageToTest.Controllers
             catch (Exception ex)
             {
                 _installationModel.Success = false;
-                _installationModel.ErrorMessage = ex.Message.ToString();
+                _installationModel.Information = ex.Message.ToString();
             }
             return Json(_installationModel);
         }
         //[HttpPost("[action]")]
         //  public JsonResult ConvertImagetoTest([FromBody] string strifiedData)
-
-        //     [HttpGet("[action]")]
-        //public JsonResult ConvertImagetoTest(string ImgURL, string ImageuniqueId)
-
         //{
         //    _installationModel = new InstallationModel();
         //    try
@@ -159,10 +153,6 @@ namespace ImageToTest.Controllers
                     System.IO.File.WriteAllText(utils.getAppSettingValue("Script:PrintedImagelog"), "");
 
                     ExecutePythonScript(utils.getAppSettingValue("Script:PYPrintedImageProcess"), ImgURL);
-                    string PrintedtoText = ReadText(utils.getAppSettingValue("Script:PrintedImagelog"));
-                    System.Diagnostics.Debug.WriteLine(PrintedtoText);
-                    _installationModel.Success = true;
-                    _installationModel.Information = PrintedtoText;
                 }
             }
             catch (Exception ex)
@@ -171,6 +161,29 @@ namespace ImageToTest.Controllers
             }
             return Json(_installationModel);
 
+        }
+
+
+        [HttpGet("[action]")]
+        public JsonResult PrintedStatusCheckCall()
+        {
+            _installationModel = new InstallationModel();
+            try
+            {
+                string PrintedtoText = ReadText(utils.getAppSettingValue("Script:PrintedImagelog"));
+
+                if (!string.IsNullOrEmpty(PrintedtoText))
+                {
+                    _installationModel.Success = true;
+                    _installationModel.Information = PrintedtoText;
+                }
+            }
+            catch (Exception ex)
+            {
+                _installationModel.Success = false;
+                _installationModel.Information = ex.Message.ToString();
+            }
+            return Json(_installationModel);
         }
 
         #endregion PrintedtoText
@@ -188,10 +201,7 @@ namespace ImageToTest.Controllers
                     System.IO.File.WriteAllText(utils.getAppSettingValue("Script:PrintedPdflog"), "");
 
                     ExecutePythonScript(utils.getAppSettingValue("Script:PYPrintedPdfProcess"));
-                    string PdftoText = ReadText(utils.getAppSettingValue("Script:PrintedPdflog"));
-                    System.Diagnostics.Debug.WriteLine(PdftoText);
-                    _installationModel.Success = true;
-                    _installationModel.Information = PdftoText;
+                  
                 }
             }
             catch (Exception ex)
@@ -201,6 +211,28 @@ namespace ImageToTest.Controllers
             return Json(_installationModel);
 
         }
+
+        [HttpGet("[action]")]
+        public JsonResult PrintedPdfStatusCheckCall()
+        {
+            _installationModel = new InstallationModel();
+            try
+            {
+                string PdftoText = ReadText(utils.getAppSettingValue("Script:PrintedPdflog"));
+                if (!string.IsNullOrEmpty(PdftoText))
+                {
+                    _installationModel.Success = true;
+                    _installationModel.Information = PdftoText;
+                }
+            }
+            catch (Exception ex)
+            {
+                _installationModel.Success = false;
+                _installationModel.Information = ex.Message.ToString();
+            }
+            return Json(_installationModel);
+        }
+
 
         #endregion PDF toText
 
