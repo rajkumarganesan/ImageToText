@@ -209,11 +209,11 @@ export class HomeComponent {
                         this.printedTextName = this.printedTextName[1];
                         this.printedTextDate = this.PrintedText.match("DATE : (.*) WEIGHT :");
                         this.printedTextDate = this.printedTextDate[1];
-                        this.printedTextWeight = this.PrintedText.match(" WEIGHT :(.*) MNO.: ");
+                        this.printedTextWeight = this.PrintedText.match("WEIGHT :(.*) MNO.:");
                         this.printedTextWeight = this.printedTextWeight[1];
-                        this.printedTextMno = this.PrintedText.match(" MNO.: (.*) BP: ");
+                        this.printedTextMno = this.PrintedText.match("MNO.: (.*) BP:");
                         this.printedTextMno = this.printedTextMno[1];
-                        this.printedTextBp = this.PrintedText.match(" BP: (.*) BMI: ");
+                        this.printedTextBp = this.PrintedText.match("BP: (.*) BMI:");
                         this.printedTextBp = this.printedTextBp[1];
                     }
                 });
