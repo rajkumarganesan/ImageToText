@@ -146,7 +146,7 @@ export class HomeComponent {
     //}
 
     ConvertImagetoText() {
-        debugger
+        this.StatusCheck = false;
         this.infomsg = "";
         this.http.get(this.baseUrl + 'api/SampleData/ConvertImagetoTest?ImgURL=' + this.imgurl + "&ImageuniqueId=" + new Date().getTime())
             .map(response => response.json())
@@ -173,7 +173,6 @@ export class HomeComponent {
         });
     }
     ConvertPrintedtoText() {
-        debugger
         this.PrintedText = "";
       //  let imgurl = "http://1.bp.blogspot.com/-j2sZWroQJ9I/UdbTs41hJMI/AAAAAAAAAWY/AkNUM_tsriI/s1600/";
         this.http.get(this.baseUrl + 'api/SampleData/PrintedtoText?ImgURL=' + this.imgurl + "&ImageuniqueId=" + new Date().getTime())
