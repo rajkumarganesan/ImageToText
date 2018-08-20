@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using ImageToTest.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -66,7 +67,7 @@ namespace ImageToTest.Controllers
       //  public JsonResult ConvertImagetoTest([FromBody] string strifiedData)
       
              [HttpGet("[action]")]
-        public JsonResult ConvertImagetoTest(string ImgURL, string ImageuniqueId)
+        public async Task<JsonResult>  ConvertImagetoTest(string ImgURL, string ImageuniqueId)
 
         {
             _installationModel = new InstallationModel();
@@ -78,8 +79,7 @@ namespace ImageToTest.Controllers
                 {
                     _handwrittenUniqueId = ImageuniqueId;
                     System.IO.File.WriteAllText(utils.getAppSettingValue("Script:Imagelog"), "");
-
-                ExecutePythonScript(utils.getAppSettingValue("Script:PYImageProcess"), ImgURL);
+               await ExecutePythonScript(utils.getAppSettingValue("Script:PYImageProcess"), ImgURL);
                 string ImagetoTest = ReadText(utils.getAppSettingValue("Script:Imagelog"));
                 System.Diagnostics.Debug.WriteLine(ImagetoTest);
                 _installationModel.Success = true;
@@ -168,7 +168,7 @@ namespace ImageToTest.Controllers
             return outputValue;
         }
 
-        public void ExecutePythonScript(string cmd, string Arguments = null, string Arguments1 = null)
+        public async Task ExecutePythonScript(string cmd, string Arguments = null, string Arguments1 = null)
         {
             try
             {
