@@ -29,6 +29,8 @@ export class HomeComponent {
     PrintedImageList = new Array();
     imgurl: any;
     imgurlHtml: any;
+    public StatusCheck: boolean = false;
+
     constructor(private http: Http, @Inject('BASE_URL') baseUrl: string, private router: Router, private sanitizer: DomSanitizer) {
         /*Get Base URL*/
         this.baseUrl = baseUrl;
@@ -130,19 +132,46 @@ export class HomeComponent {
     //        });
     //}
 
+    //ConvertImagetoText() {
+    //    debugger
+    //    this.infomsg = "";
+    //    //  let imgurl = "http://1.bp.blogspot.com/-j2sZWroQJ9I/UdbTs41hJMI/AAAAAAAAAWY/AkNUM_tsriI/s1600/";
+    //    this.http.get(this.baseUrl + 'api/SampleData/ConvertImagetoTest?ImgURL=' + this.imgurl + "&ImageuniqueId=" + new Date().getTime())
+    //        .map(response => response.json())
+    //        .subscribe(PrintedtoText => {
+    //            console.log(PrintedtoText);
+    //            if (PrintedtoText.information != null)
+    //                this.infomsg = PrintedtoText.information;
+    //        });
+    //}
+
     ConvertImagetoText() {
         debugger
         this.infomsg = "";
-        //  let imgurl = "http://1.bp.blogspot.com/-j2sZWroQJ9I/UdbTs41hJMI/AAAAAAAAAWY/AkNUM_tsriI/s1600/";
         this.http.get(this.baseUrl + 'api/SampleData/ConvertImagetoTest?ImgURL=' + this.imgurl + "&ImageuniqueId=" + new Date().getTime())
             .map(response => response.json())
             .subscribe(PrintedtoText => {
-                console.log(PrintedtoText);
-                if (PrintedtoText.information != null)
-                    this.infomsg = PrintedtoText.information;
+                //console.log(PrintedtoText);
+                //if (PrintedtoText.information != null)
+                //    this.infomsg = PrintedtoText.information;
             });
+        var temp = this;
+        setTimeout(function () { temp.StatusCheckcall(); }, 5000);
     }
 
+    public StatusCheckcall() {
+        Observable.interval(3000).takeWhile(() => !this.StatusCheck).subscribe(x => {
+            this.http.get(this.baseUrl + 'api/SampleData/StatusCheck')
+                .map(response => response.json())
+                .subscribe(data => {
+                    console.log(data);
+                    if (data.success == true && data.information != null) {
+                        this.infomsg = data.information;
+                        this.StatusCheck = true;
+                    }
+                });
+        });
+    }
     ConvertPrintedtoText() {
         debugger
         this.PrintedText = "";

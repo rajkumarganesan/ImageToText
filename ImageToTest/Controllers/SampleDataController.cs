@@ -62,28 +62,25 @@ namespace ImageToTest.Controllers
         }
 
         #region AI
-        //[HttpPost("[action]")]
-      //  public JsonResult ConvertImagetoTest([FromBody] string strifiedData)
-      
-             [HttpGet("[action]")]
+
+        [HttpGet("[action]")]
         public JsonResult ConvertImagetoTest(string ImgURL, string ImageuniqueId)
 
         {
             _installationModel = new InstallationModel();
             try
             {
-                 //string imgname = "\"" + ImgURL + "\"";
-                //string str = "\"+strifiedData\"+";
+
                 if (_handwrittenUniqueId != ImageuniqueId)
                 {
                     _handwrittenUniqueId = ImageuniqueId;
                     System.IO.File.WriteAllText(utils.getAppSettingValue("Script:Imagelog"), "");
 
-                ExecutePythonScript(utils.getAppSettingValue("Script:PYImageProcess"), ImgURL);
-                string ImagetoTest = ReadText(utils.getAppSettingValue("Script:Imagelog"));
-                System.Diagnostics.Debug.WriteLine(ImagetoTest);
-                _installationModel.Success = true;
-                _installationModel.Information = ImagetoTest;
+                    ExecutePythonScript(utils.getAppSettingValue("Script:PYImageProcess"), ImgURL);
+                    //string ImagetoTest = ReadText(utils.getAppSettingValue("Script:Imagelog"));
+                    //System.Diagnostics.Debug.WriteLine(ImagetoTest);
+                    //_installationModel.Success = true;
+                    //_installationModel.Information = ImagetoTest;
                 }
             }
             catch (Exception ex)
@@ -93,6 +90,59 @@ namespace ImageToTest.Controllers
             return Json(_installationModel);
 
         }
+
+        [HttpGet("[action]")]
+        public JsonResult StatusCheck()
+        {
+            _installationModel = new InstallationModel();
+            try
+            {
+                string ImagetoTest = ReadText(utils.getAppSettingValue("Script:Imagelog"));
+                if (!string.IsNullOrEmpty(ImagetoTest))
+                {
+                    _installationModel.Success = true;
+                    _installationModel.Information = ImagetoTest;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                _installationModel.Success = false;
+                _installationModel.ErrorMessage = ex.Message.ToString();
+            }
+            return Json(_installationModel);
+        }
+        //[HttpPost("[action]")]
+        //  public JsonResult ConvertImagetoTest([FromBody] string strifiedData)
+
+        //     [HttpGet("[action]")]
+        //public JsonResult ConvertImagetoTest(string ImgURL, string ImageuniqueId)
+
+        //{
+        //    _installationModel = new InstallationModel();
+        //    try
+        //    {
+        //         //string imgname = "\"" + ImgURL + "\"";
+        //        //string str = "\"+strifiedData\"+";
+        //        if (_handwrittenUniqueId != ImageuniqueId)
+        //        {
+        //            _handwrittenUniqueId = ImageuniqueId;
+        //            System.IO.File.WriteAllText(utils.getAppSettingValue("Script:Imagelog"), "");
+
+        //        ExecutePythonScript(utils.getAppSettingValue("Script:PYImageProcess"), ImgURL);
+        //        string ImagetoTest = ReadText(utils.getAppSettingValue("Script:Imagelog"));
+        //        System.Diagnostics.Debug.WriteLine(ImagetoTest);
+        //        _installationModel.Success = true;
+        //        _installationModel.Information = ImagetoTest;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _installationModel.UnhandleException = ex.Message.ToString();
+        //    }
+        //    return Json(_installationModel);
+
+        //}
 
         #endregion AI
 
