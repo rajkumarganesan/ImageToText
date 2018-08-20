@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using ImageToTest.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -67,7 +66,7 @@ namespace ImageToTest.Controllers
       //  public JsonResult ConvertImagetoTest([FromBody] string strifiedData)
       
              [HttpGet("[action]")]
-        public JsonResult  ConvertImagetoTest(string ImgURL, string ImageuniqueId)
+        public JsonResult ConvertImagetoTest(string ImgURL, string ImageuniqueId)
 
         {
             _installationModel = new InstallationModel();
@@ -79,6 +78,7 @@ namespace ImageToTest.Controllers
                 {
                     _handwrittenUniqueId = ImageuniqueId;
                     System.IO.File.WriteAllText(utils.getAppSettingValue("Script:Imagelog"), "");
+
                 ExecutePythonScript(utils.getAppSettingValue("Script:PYImageProcess"), ImgURL);
                 string ImagetoTest = ReadText(utils.getAppSettingValue("Script:Imagelog"));
                 System.Diagnostics.Debug.WriteLine(ImagetoTest);
@@ -168,7 +168,7 @@ namespace ImageToTest.Controllers
             return outputValue;
         }
 
-        public async void ExecutePythonScript(string cmd, string Arguments = null, string Arguments1 = null)
+        public void ExecutePythonScript(string cmd, string Arguments = null, string Arguments1 = null)
         {
             try
             {
@@ -194,21 +194,18 @@ namespace ImageToTest.Controllers
                 {
                     cmdStartInfo.Arguments = cmd;
                 }
-                await Task.Run(() =>
-                {
-                    Process p = new Process();
-                    p.StartInfo = cmdStartInfo;
-                    p.ErrorDataReceived += cmd_Error;
-                    p.OutputDataReceived += cmd_DataReceived;
-                    p.EnableRaisingEvents = true;
+                Process p = new Process();
+                p.StartInfo = cmdStartInfo;
+                p.ErrorDataReceived += cmd_Error;
+                p.OutputDataReceived += cmd_DataReceived;
+                p.EnableRaisingEvents = true;
 
-                    p.Start();
+                p.Start();
 
-                    p.BeginOutputReadLine();
-                    p.BeginErrorReadLine();
+                p.BeginOutputReadLine();
+                p.BeginErrorReadLine();
 
-                    p.WaitForExit();
-                });
+                p.WaitForExit();
             }
             catch (Exception ex)
             {
