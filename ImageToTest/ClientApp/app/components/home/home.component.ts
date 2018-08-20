@@ -32,7 +32,11 @@ export class HomeComponent {
     printedImgUrlHtml: any;
     StatusCheck: boolean = false;
     Loading: boolean = false;
-
+    printedTextName: any;
+    printedTextDate: any;
+    printedTextWeight: any;
+    printedTextMno: any;
+    printedTextBp: any;
     constructor(private http: Http, @Inject('BASE_URL') baseUrl: string, private router: Router, private sanitizer: DomSanitizer) {
         /*Get Base URL*/
         this.baseUrl = baseUrl;
@@ -171,7 +175,7 @@ export class HomeComponent {
                     console.log(data);
                     if (data.success == true && data.information != null) {
                         this.Loading = false;
-                        this.infomsg = data.information;
+                        this.infomsg = data.information;                     
                         this.StatusCheck = true;
                     }
                 });
@@ -201,6 +205,16 @@ export class HomeComponent {
                         this.Loading = false;
                         this.PrintedText = data.information;
                         this.StatusCheck = true;
+                        this.printedTextName = this.PrintedText.match("NAME : (.*) DATE :");
+                        this.printedTextName = this.printedTextName[1];
+                        this.printedTextDate = this.PrintedText.match("DATE : (.*) WEIGHT :");
+                        this.printedTextDate = this.printedTextDate[1];
+                        this.printedTextWeight = this.PrintedText.match("WEIGHT :(.*) MNO.:");
+                        this.printedTextWeight = this.printedTextWeight[1];
+                        this.printedTextMno = this.PrintedText.match(" MNO.:(.*) BP:");
+                        this.printedTextMno = this.printedTextMno[1];
+                        this.printedTextBp = this.PrintedText.match(" BP: (.*) BMI:");
+                        this.printedTextBp = this.printedTextBp[1];
                     }
                 });
         });
