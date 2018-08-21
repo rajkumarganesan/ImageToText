@@ -1,7 +1,7 @@
 <html>
 <body>
     <div>
-        <nav class="navbar navbar-inverse" style="width: 134%;background:#3F5174;margin-bottom: 0px;box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);">
+        <nav class="navbar navbar-inverse" style="width: 100%;background:#3F5174;margin-bottom: 0px;box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <a class="navbar-brand" style="color:  #fff;">Image Processing</a>
@@ -25,7 +25,7 @@
 
             </ul>
         </div>
-        <div class="tab-content" style="margin-left: 97px;margin-top: 3%;">
+        <div class="tab-content" style="margin-left: 97px;margin-top: 0%;">
             <div role="tabpanel" class="tab-pane fade in active" id="Handwrittentxt">
                 <div style="display:inline-flex">
                     <div style="margin-left: -50px; margin-top: 20px;">
@@ -89,7 +89,10 @@
                 <div style="margin-top: 1%;">
                     <div style="display: inline-flex;">
                         <div style="padding-left: 605px;">
-                            <button type="button" class="btn btn-primary" (click)="ConvertPrintedtoText()">Convert</button>
+                            <button type="button" class="btn btn-primary" (click)="ConvertPrintedtoText()">
+                                Convert
+                            </button>
+                            <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#unFormattedData">Unformatted</button>-->
                         </div>
                     </div>
                 </div>
@@ -106,8 +109,8 @@
                 <div style="margin-top: 1%;">
                     <div style="display: inline-flex;">
                         <!--<div>
-                            <input type='file' (change)="readUrl($event)">
-                        </div>-->
+                        <input type='file' (change)="readUrl($event)">
+                    </div>-->
                         <div style="padding-left: 335px;">
                             <button type="button" class="btn btn-primary" (click)="ConvertpdftoText()">Convert</button>
                         </div>
@@ -115,10 +118,25 @@
                 </div>
             </div>
         </div>
+
+        <footer class="mainfooter" role="contentinfo" style="margin-top: 14px;">
+
+            <div class="footer-bottom">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <!--Footer Bottom-->
+                            <p class="text-xs-center" style="margin: -12px 0 3px; text-align:center;padding-top: 4px;">Alphind Software Solutions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
     <div [hidden]="!Loading">
         <div class="backdrop"></div>
-        <div class="loader" style="margin-left: 47%;margin-top: -23%;"></div>
+        <div class="loader" style="margin-left: 47%;margin-top: -27%;"></div>
     </div>
 </body>
+
 </html>

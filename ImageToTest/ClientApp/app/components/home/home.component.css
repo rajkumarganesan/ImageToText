@@ -1,4 +1,15 @@
 ﻿
+footer {
+    color: white;
+}
+
+
+
+.footer-bottom {
+    background: #3d6277;
+    padding: 22px;
+}
+
 
 .box {
     border-radius: 3px;
