@@ -32,89 +32,124 @@ export class HomeComponent {
     printedImgUrlHtml: any;
     StatusCheck: boolean = false;
     Loading: boolean = false;
-    printedTextName: any;
-    printedTextDate: any;
-    printedTextWeight: any;
-    printedTextMno: any;
-    printedTextBp: any;
+    //printedTextName: any;
+    //printedTextDate: any;
+    //printedTextWeight: any;
+    //printedTextMno: any;
+    //printedTextBp: any;
     constructor(private http: Http, @Inject('BASE_URL') baseUrl: string, private router: Router, private sanitizer: DomSanitizer) {
         /*Get Base URL*/
         this.baseUrl = baseUrl;
         this.imagetotest = true;
         this.ImageList = [
-            { taskname: 'Image1', id: '1'},
-            { taskname: 'Image2', id: '2'},
-            { taskname: 'Image3', id: '3'},
-            { taskname: 'Image4', id: '4'},
-            { taskname: 'Image5', id: '5'},
-            { taskname: 'Image6', id: '6'},
-            { taskname: 'Image7', id: '7'},
-            { taskname: 'Image8', id: '8'},
-            { taskname: 'Image9', id: '9'},
-            { taskname: 'Image10', id: '10'},
-            { taskname: 'Image11', id: '11'},
-            { taskname: 'Image12', id: '12'}
+            { taskname: 'Android', id: '1' },
+            { taskname: 'Bigdata', id: '2' },
+            { taskname: 'Breakingbad', id: '3' },
+            { taskname: 'Gameofthrones', id: '4' },
+            { taskname: 'Image_Processing', id: '5' },
+            { taskname: 'Mobilephones', id: '6' },
+            { taskname: 'Petanimal', id: '7' },
+            { taskname: 'Social_Network', id: '8' },
+            { taskname: 'Text_Analytics', id: '9' },
+            { taskname: 'Virtual_Reality', id: '10' },
+
         ];
         this.PrintedImageList = [
-            { taskname: 'PrintedImage1', id: '1' }
+            { taskname: 'PrintedImage1', id: '1' },
+            { taskname: 'PrintedImage2', id: '2' },
+            { taskname: 'PrintedImage3', id: '3' },
+            { taskname: 'PrintedImage4', id: '4' },
+            { taskname: 'PrintedImage5', id: '5' },
+            { taskname: 'PrintedImage6', id: '6' },
+            { taskname: 'PrintedImage7', id: '7' },
+            { taskname: 'PrintedImage8', id: '8' }
         ];
     }
 
     selectedPrintedImage(id: any) {
-        if (id == "1") {
-            this.imgurl = "printer.jpg";
-            this.printedImgUrlHtml = require('../../../Images/Printer.jpg');
+        //if (id == "1") {
+        //    this.imgurl = "printer.jpg";
+        //    this.printedImgUrlHtml = require('../../../Images/Printer.jpg');
+        //}
+        debugger
+        switch (id) {
+            case "1":
+                this.imgurl = "PrintedImage1.jpg";
+                this.printedImgUrlHtml = require('../../../Images/PrintedImage1.jpg');
+                break;
+            case "2":
+                this.imgurl = "PrintedImage2.jpg";
+                this.printedImgUrlHtml = require('../../../Images/PrintedImage2.jpg');
+                break;
+            case "3":
+                this.imgurl = "PrintedImage3.jpg";
+                this.printedImgUrlHtml = require('../../../Images/PrintedImage3.jpg');
+                break;
+            case "4":
+                this.imgurl = "PrintedImage4.jpg";
+                this.printedImgUrlHtml = require('../../../Images/PrintedImage4.jpg');
+                break;
+            case "5":
+                this.imgurl = "PrintedImage5.jpg";
+                this.printedImgUrlHtml = require('../../../Images/PrintedImage5.jpg');
+                break;
+            case "6":
+                this.imgurl = "PrintedImage6.jpg";
+                this.printedImgUrlHtml = require('../../../Images/PrintedImage6.jpg');
+                break;
+            case "7":
+                this.imgurl = "PrintedImage7.jpg";
+                this.printedImgUrlHtml = require('../../../Images/PrintedImage7.jpg');
+                break;
+            case "8":
+                this.imgurl = "printer.jpg";
+                this.printedImgUrlHtml = require('../../../Images/Printer.jpg');
+                break;
+            default:
+                alert("Sorry, that image is not in the system yet!");
         }
     }
     selectedImage(id: any) {
         debugger
         if (id == "1") {
-            this.imgurl = "1.jpg";
-            this.imgurlHtml = require('../../../Images/1.jpg');
+            this.imgurl = "android.jpg";
+            this.imgurlHtml = require('../../../Images/android.jpg');
         } else if (id == "2") {
 
-            this.imgurl = "text10.jpg"
-            this.imgurlHtml = require('../../../Images/text10.jpg');
+            this.imgurl = "bigdata.jpg"
+            this.imgurlHtml = require('../../../Images/bigdata.jpg');
         }
         else if (id == "3") {
-            this.imgurl = "text11.jpg"
-            this.imgurlHtml = require('../../../Images/text11.jpg');
+            this.imgurl = "breakingbad.jpg"
+            this.imgurlHtml = require('../../../Images/breakingbad.jpg');
         }
         else if (id == "4") {
-            this.imgurl = "text12.jpg"
-            this.imgurlHtml = require('../../../Images/text12.jpg');
+            this.imgurl = "gameofthrones.jpg"
+            this.imgurlHtml = require('../../../Images/gameofthrones.jpg');
         }
         else if (id == "5") {
-            this.imgurl = "text13.jpg"
-            this.imgurlHtml = require('../../../Images/text13.jpg');
+            this.imgurl = "imageprocessing.jpg"
+            this.imgurlHtml = require('../../../Images/imageprocessing.jpg');
         }
         else if (id == "6") {
-            this.imgurl = "text14.jpg"
-            this.imgurlHtml = require('../../../Images/text14.jpg');
+            this.imgurl = "mobilephones.jpg"
+            this.imgurlHtml = require('../../../Images/mobilephones.jpg');
         }
         else if (id == "7") {
-            this.imgurl = "text15.jpg"
-            this.imgurlHtml = require('../../../Images/text15.jpg');
+            this.imgurl = "petanimal.jpg"
+            this.imgurlHtml = require('../../../Images/petanimal.jpg');
         }
         else if (id == "8") {
-            this.imgurl = "text5.jpg"
-            this.imgurlHtml = require('../../../Images/text5.jpg');
+            this.imgurl = "socialnetwork.jpg"
+            this.imgurlHtml = require('../../../Images/socialnetwork.jpg');
         }
         else if (id == "9") {
-            this.imgurl = "text6.jpg"
-            this.imgurlHtml = require('../../../Images/text6.jpg');
+            this.imgurl = "textanalytics.jpg"
+            this.imgurlHtml = require('../../../Images/textanalytics.jpg');
         }
         else if (id == "10") {
-            this.imgurl = "text7.jpg"
-            this.imgurlHtml = require('../../../Images/text7.jpg');
-        }
-        else if (id == "11") {
-            this.imgurl = "text8.jpg"
-            this.imgurlHtml = require('../../../Images/text8.jpg');
-        }
-        else if (id == "12") {
-            this.imgurl = "text9.jpg"
-            this.imgurlHtml = require('../../../Images/text9.jpg');
+            this.imgurl = "virtualreality.jpg"
+            this.imgurlHtml = require('../../../Images/virtualreality.jpg');
         }
     }
     //ConvertImagetoText() {
@@ -205,16 +240,16 @@ export class HomeComponent {
                         this.Loading = false;
                         this.PrintedText = data.information;
                         this.StatusCheck = true;
-                        this.printedTextName = this.PrintedText.match("NAME : (.*) DATE :");
-                        this.printedTextName = this.printedTextName[1];
-                        this.printedTextDate = this.PrintedText.match("DATE : (.*) WEIGHT :");
-                        this.printedTextDate = this.printedTextDate[1];
-                        this.printedTextWeight = this.PrintedText.match("WEIGHT :(.*) MNO.:");
-                        this.printedTextWeight = this.printedTextWeight[1];
-                        this.printedTextMno = this.PrintedText.match("MNO.: (.*) BP:");
-                        this.printedTextMno = this.printedTextMno[1];
-                        this.printedTextBp = this.PrintedText.match("BP: (.*) BMI:");
-                        this.printedTextBp = this.printedTextBp[1];
+                        //this.printedTextName = this.PrintedText.match("NAME : (.*) DATE :");
+                        //this.printedTextName = this.printedTextName[1];
+                        //this.printedTextDate = this.PrintedText.match("DATE : (.*) WEIGHT :");
+                        //this.printedTextDate = this.printedTextDate[1];
+                        //this.printedTextWeight = this.PrintedText.match("WEIGHT :(.*) MNO.:");
+                        //this.printedTextWeight = this.printedTextWeight[1];
+                        //this.printedTextMno = this.PrintedText.match("MNO.: (.*) BP:");
+                        //this.printedTextMno = this.printedTextMno[1];
+                        //this.printedTextBp = this.PrintedText.match("BP: (.*) BMI:");
+                        //this.printedTextBp = this.printedTextBp[1];
                     }
                 });
         });
