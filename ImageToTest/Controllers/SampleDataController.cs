@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text;
 using ImageToTest.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -60,7 +61,7 @@ namespace ImageToTest.Controllers
                 }
             }
         }
-
+                
         #region AI
 
         [HttpGet("[action]")]
@@ -99,7 +100,8 @@ namespace ImageToTest.Controllers
                 if (!string.IsNullOrEmpty(ImagetoTest))
                 {
                     _installationModel.Success = true;
-                    _installationModel.Information = ImagetoTest;
+                    _installationModel.Information = GetWordWrappedParagraph(ImagetoTest);
+                    //GetWordWrappedParagraph(ImagetoTest);
                 }
 
             }
@@ -237,6 +239,38 @@ namespace ImageToTest.Controllers
         #endregion PDF toText
 
 
+        public static string GetWordWrappedParagraph(string paragraph)
+        {
+            var width = 70;
+            if (string.IsNullOrWhiteSpace(paragraph))
+            {
+                return string.Empty;
+            }
+            var approxLineCount = paragraph.Length / width;
+            //var approxLineCount = paragraph.Length / 400;
+            var lines = new StringBuilder(paragraph.Length + (approxLineCount * 4));
+
+            for (var i = 0; i < paragraph.Length;)
+            {
+                var grabLimit = Math.Min(width, paragraph.Length - i);
+                var line = paragraph.Substring(i, grabLimit);
+                var isLastChunk = grabLimit + i == paragraph.Length;
+
+                if (isLastChunk)
+                {
+                    i = i + grabLimit;
+                    lines.Append(line);
+                }
+                else
+                {
+                    var lastSpace = line.LastIndexOf(" ", StringComparison.Ordinal);
+                    lines.AppendLine(line.Substring(0, lastSpace));
+                    //Trailing spaces needn't be displayed as the first character on the new line
+                    i = i + lastSpace + 1;
+                }
+            }
+            return lines.ToString();
+        }
 
         private string ReadText(string Path)
         {
