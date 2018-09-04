@@ -62,7 +62,8 @@ export class HomeComponent {
             { taskname: 'PrintedImage5', id: '5' },
             { taskname: 'PrintedImage6', id: '6' },
             { taskname: 'PrintedImage7', id: '7' },
-            { taskname: 'PrintedImage8', id: '8' }
+            { taskname: 'PrintedImage8', id: '8' },
+            { taskname: 'PrintedImage9', id: '9' }
         ];
     }
 
@@ -104,6 +105,10 @@ export class HomeComponent {
             case "8":
                 this.imgurl = "printer.jpg";
                 this.printedImgUrlHtml = require('../../../Images/Printer.jpg');
+                break;
+            case "9":
+                this.imgurl = "PrintedImage8.jpg";
+                this.printedImgUrlHtml = require('../../../Images/PrintedImage8.jpg');
                 break;
             default:
                 alert("Sorry, that image is not in the system yet!");
