@@ -52,6 +52,8 @@ export class HomeComponent {
             { taskname: 'Social_Network', id: '8' },
             { taskname: 'Text_Analytics', id: '9' },
             { taskname: 'Virtual_Reality', id: '10' },
+            { taskname: 'YouTube', id: '11' },
+            { taskname: 'Bitcoin', id: '12' },
 
         ];
         this.PrintedImageList = [
@@ -155,6 +157,14 @@ export class HomeComponent {
         else if (id == "10") {
             this.imgurl = "virtualreality.jpg"
             this.imgurlHtml = require('../../../Images/virtualreality.jpg');
+        }
+        else if (id == "11") {
+            this.imgurl = "youtube.jpg"
+            this.imgurlHtml = require('../../../Images/youtube.jpg');
+        }
+        else if (id == "12") {
+            this.imgurl = "bitcoin.jpg"
+            this.imgurlHtml = require('../../../Images/bitcoin.jpg');
         }
     }
     //ConvertImagetoText() {
