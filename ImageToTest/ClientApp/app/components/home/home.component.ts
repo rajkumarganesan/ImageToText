@@ -38,6 +38,7 @@ export class HomeComponent {
     //printedTextWeight: any;
     //printedTextMno: any;
     //printedTextBp: any;
+    printedSelectImage:string="Select Image"
     constructor(private http: Http, @Inject('BASE_URL') baseUrl: string, private router: Router, private sanitizer: DomSanitizer) {
         /*Get Base URL*/
         this.baseUrl = baseUrl;
@@ -66,7 +67,8 @@ export class HomeComponent {
             { taskname: 'PrintedImage6', id: '6' },
             { taskname: 'PrintedImage7', id: '7' },
             { taskname: 'PrintedImage8', id: '8' },
-            { taskname: 'PrintedImage9', id: '9' }
+            { taskname: 'PrintedImage9', id: '9' },
+            { taskname: 'PrintedImage10', id: '10' }
         ];
     }
 
@@ -80,38 +82,52 @@ export class HomeComponent {
             case "1":
                 this.printedImgUrl = "PrintedImage1.jpg";
                 this.printedImgUrlHtml = require('../../../Images/PrintedImage1.jpg');
+                this.printedSelectImage = "PrintedImage1";
                 break;
             case "2":
                 this.printedImgUrl = "PrintedImage2.jpg";
                 this.printedImgUrlHtml = require('../../../Images/PrintedImage2.jpg');
+                this.printedSelectImage = "PrintedImage2";
                 break;
             case "3":
                 this.printedImgUrl = "PrintedImage3.jpg";
                 this.printedImgUrlHtml = require('../../../Images/PrintedImage3.jpg');
+                this.printedSelectImage = "PrintedImage3";
                 break;
             case "4":
                 this.printedImgUrl = "PrintedImage4.jpg";
                 this.printedImgUrlHtml = require('../../../Images/PrintedImage4.jpg');
+                this.printedSelectImage = "PrintedImage4";
                 break;
             case "5":
                 this.printedImgUrl = "PrintedImage5.jpg";
                 this.printedImgUrlHtml = require('../../../Images/PrintedImage5.jpg');
+                this.printedSelectImage = "PrintedImage5";
                 break;
             case "6":
                 this.printedImgUrl = "PrintedImage6.jpg";
                 this.printedImgUrlHtml = require('../../../Images/PrintedImage6.jpg');
+                this.printedSelectImage = "PrintedImage6";
                 break;
             case "7":
                 this.printedImgUrl = "PrintedImage7.jpg";
                 this.printedImgUrlHtml = require('../../../Images/PrintedImage7.jpg');
+                this.printedSelectImage = "PrintedImage7";
                 break;
             case "8":
                 this.printedImgUrl = "printer.jpg";
                 this.printedImgUrlHtml = require('../../../Images/Printer.jpg');
+                this.printedSelectImage = "PrintedImage8";
                 break;
             case "9":
-                this.printedImgUrl = "PrintedImage8.jpg";
-                this.printedImgUrlHtml = require('../../../Images/PrintedImage8.jpg');
+                this.printedImgUrl = "PrintedImage10.jpg";
+                this.printedImgUrlHtml = require('../../../Images/PrintedImage10.jpg');
+                this.printedSelectImage = "PrintedImage9";
+                break;
+            case "10":
+                this.printedImgUrl = "PrintedImage11.jpg";
+                this.printedImgUrlHtml = require('../../../Images/PrintedImage11.jpg');
+                this.printedSelectImage = "PrintedImage10";
                 break;
             default:
                 alert("Sorry, that image is not in the system yet!");
