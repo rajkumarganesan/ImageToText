@@ -27,7 +27,8 @@ export class HomeComponent {
     imagetotest: boolean = true;
     ImageList = new Array();
     PrintedImageList = new Array();
-    imgurl: any;
+    imgurl: any = "Select Image";
+    printedImgUrl: any = "Select Image";
     imgurlHtml: any;
     printedImgUrlHtml: any;
     StatusCheck: boolean = false;
@@ -77,39 +78,39 @@ export class HomeComponent {
         debugger
         switch (id) {
             case "1":
-                this.imgurl = "PrintedImage1.jpg";
+                this.printedImgUrl = "PrintedImage1.jpg";
                 this.printedImgUrlHtml = require('../../../Images/PrintedImage1.jpg');
                 break;
             case "2":
-                this.imgurl = "PrintedImage2.jpg";
+                this.printedImgUrl = "PrintedImage2.jpg";
                 this.printedImgUrlHtml = require('../../../Images/PrintedImage2.jpg');
                 break;
             case "3":
-                this.imgurl = "PrintedImage3.jpg";
+                this.printedImgUrl = "PrintedImage3.jpg";
                 this.printedImgUrlHtml = require('../../../Images/PrintedImage3.jpg');
                 break;
             case "4":
-                this.imgurl = "PrintedImage4.jpg";
+                this.printedImgUrl = "PrintedImage4.jpg";
                 this.printedImgUrlHtml = require('../../../Images/PrintedImage4.jpg');
                 break;
             case "5":
-                this.imgurl = "PrintedImage5.jpg";
+                this.printedImgUrl = "PrintedImage5.jpg";
                 this.printedImgUrlHtml = require('../../../Images/PrintedImage5.jpg');
                 break;
             case "6":
-                this.imgurl = "PrintedImage6.jpg";
+                this.printedImgUrl = "PrintedImage6.jpg";
                 this.printedImgUrlHtml = require('../../../Images/PrintedImage6.jpg');
                 break;
             case "7":
-                this.imgurl = "PrintedImage7.jpg";
+                this.printedImgUrl = "PrintedImage7.jpg";
                 this.printedImgUrlHtml = require('../../../Images/PrintedImage7.jpg');
                 break;
             case "8":
-                this.imgurl = "printer.jpg";
+                this.printedImgUrl = "printer.jpg";
                 this.printedImgUrlHtml = require('../../../Images/Printer.jpg');
                 break;
             case "9":
-                this.imgurl = "PrintedImage8.jpg";
+                this.printedImgUrl = "PrintedImage8.jpg";
                 this.printedImgUrlHtml = require('../../../Images/PrintedImage8.jpg');
                 break;
             default:
@@ -202,18 +203,22 @@ export class HomeComponent {
     //}
 
     ConvertImagetoText() {
-        this.StatusCheck = false;
-        this.infomsg = "";
-        this.http.get(this.baseUrl + 'api/SampleData/ConvertImagetoTest?ImgURL=' + this.imgurl + "&ImageuniqueId=" + new Date().getTime())
-            .map(response => response.json())
-            .subscribe(PrintedtoText => {
-                //console.log(PrintedtoText);
-                //if (PrintedtoText.information != null)
-                //    this.infomsg = PrintedtoText.information;
-            });
-        this.Loading = true;
-        var temp = this;
-        setTimeout(function () { temp.StatusCheckcall(); }, 5000);
+        if (this.imgurl != "Select Image") {
+            this.StatusCheck = false;
+            this.infomsg = "";
+            this.http.get(this.baseUrl + 'api/SampleData/ConvertImagetoTest?ImgURL=' + this.imgurl + "&ImageuniqueId=" + new Date().getTime())
+                .map(response => response.json())
+                .subscribe(PrintedtoText => {
+                    //console.log(PrintedtoText);
+                    //if (PrintedtoText.information != null)
+                    //    this.infomsg = PrintedtoText.information;
+                });
+            this.Loading = true;
+            var temp = this;
+            setTimeout(function () { temp.StatusCheckcall(); }, 5000);
+        } else {
+            alert("Please select an Image");
+        }
     }
 
     public StatusCheckcall() {
@@ -232,18 +237,22 @@ export class HomeComponent {
         });
     }
     ConvertPrintedtoText() {
-        this.StatusCheck = false;
-        this.PrintedText = "";
-        this.http.get(this.baseUrl + 'api/SampleData/PrintedtoText?ImgURL=' + this.imgurl + "&ImageuniqueId=" + new Date().getTime())
-            .map(response => response.json())
-            .subscribe(PrintedtoText => {
-                //console.log(PrintedtoText);
-                //if (PrintedtoText.information != null)
-                //    this.PrintedText = PrintedtoText.information;
-            });
-        this.Loading = true;
-        var temp = this;
-        setTimeout(function () { temp.PrintedStatusCheck(); }, 5000);
+        if (this.printedImgUrl != "Select Image") {
+            this.StatusCheck = false;
+            this.PrintedText = "";
+            this.http.get(this.baseUrl + 'api/SampleData/PrintedtoText?ImgURL=' + this.printedImgUrl + "&ImageuniqueId=" + new Date().getTime())
+                .map(response => response.json())
+                .subscribe(PrintedtoText => {
+                    //console.log(PrintedtoText);
+                    //if (PrintedtoText.information != null)
+                    //    this.PrintedText = PrintedtoText.information;
+                });
+            this.Loading = true;
+            var temp = this;
+            setTimeout(function () { temp.PrintedStatusCheck(); }, 5000);
+        } else {
+            alert("Please select an Image");
+        }
     }
     public PrintedStatusCheck() {
         Observable.interval(3000).takeWhile(() => !this.StatusCheck).subscribe(x => {

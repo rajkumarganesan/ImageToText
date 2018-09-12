@@ -31,7 +31,7 @@
                     <div style="margin-left: -50px; margin-top: 20px;">
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown">
-                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">Select Image<b class="caret"></b></a>
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">{{imgurl}}<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li *ngFor="let ImageList of ImageList">
                                         <a style="width: 100%; text-align: justify; cursor:pointer" (click)="selectedImage(ImageList.id)">{{ImageList.taskname}}</a>
@@ -64,7 +64,7 @@
                     <div style="margin-left: -50px; margin-top: 20px;">
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown">
-                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">Select Image<b class="caret"></b></a>
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">{{printedImgUrl}}<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li *ngFor="let ImageList of PrintedImageList">
                                         <a style="width: 100%; text-align: justify; cursor:pointer" (click)="selectedPrintedImage(ImageList.id)">{{ImageList.taskname}}</a>
