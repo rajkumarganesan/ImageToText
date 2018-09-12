@@ -43,18 +43,18 @@ export class HomeComponent {
         this.baseUrl = baseUrl;
         this.imagetotest = true;
         this.ImageList = [
-            { taskname: 'Android', id: '1' },
-            { taskname: 'Bigdata', id: '2' },
-            { taskname: 'Breakingbad', id: '3' },
-            { taskname: 'Gameofthrones', id: '4' },
-            { taskname: 'Image_Processing', id: '5' },
-            { taskname: 'Mobilephones', id: '6' },
-            { taskname: 'Petanimal', id: '7' },
-            { taskname: 'Social_Network', id: '8' },
-            { taskname: 'Text_Analytics', id: '9' },
-            { taskname: 'Virtual_Reality', id: '10' },
-            { taskname: 'YouTube', id: '11' },
-            { taskname: 'Bitcoin', id: '12' },
+            //{ taskname: 'Android', id: '1' },
+            //{ taskname: 'Bigdata', id: '2' },
+            //{ taskname: 'Breakingbad', id: '3' },
+            //{ taskname: 'Gameofthrones', id: '4' },
+            //{ taskname: 'Image_Processing', id: '5' },
+            //{ taskname: 'Mobilephones', id: '6' },
+            //{ taskname: 'Petanimal', id: '7' },
+            //{ taskname: 'Social_Network', id: '8' },
+            //{ taskname: 'Text_Analytics', id: '9' },
+            //{ taskname: 'Virtual_Reality', id: '10' },
+            { taskname: 'YouTube', id: '1' },
+            { taskname: 'Bitcoin', id: '2' },
 
         ];
         this.PrintedImageList = [
@@ -119,51 +119,51 @@ export class HomeComponent {
     }
     selectedImage(id: any) {
         debugger
-        if (id == "1") {
-            this.imgurl = "android.jpg";
-            this.imgurlHtml = require('../../../Images/android.jpg');
-        } else if (id == "2") {
+        //if (id == "1") {
+        //    this.imgurl = "android.jpg";
+        //    this.imgurlHtml = require('../../../Images/android.jpg');
+        //} else if (id == "2") {
 
-            this.imgurl = "bigdata.jpg"
-            this.imgurlHtml = require('../../../Images/bigdata.jpg');
-        }
-        else if (id == "3") {
-            this.imgurl = "breakingbad.jpg"
-            this.imgurlHtml = require('../../../Images/breakingbad.jpg');
-        }
-        else if (id == "4") {
-            this.imgurl = "gameofthrones.jpg"
-            this.imgurlHtml = require('../../../Images/gameofthrones.jpg');
-        }
-        else if (id == "5") {
-            this.imgurl = "imageprocessing.jpg"
-            this.imgurlHtml = require('../../../Images/imageprocessing.jpg');
-        }
-        else if (id == "6") {
-            this.imgurl = "mobilephones.jpg"
-            this.imgurlHtml = require('../../../Images/mobilephones.jpg');
-        }
-        else if (id == "7") {
-            this.imgurl = "petanimal.jpg"
-            this.imgurlHtml = require('../../../Images/petanimal.jpg');
-        }
-        else if (id == "8") {
-            this.imgurl = "socialnetwork.jpg"
-            this.imgurlHtml = require('../../../Images/socialnetwork.jpg');
-        }
-        else if (id == "9") {
-            this.imgurl = "textanalytics.jpg"
-            this.imgurlHtml = require('../../../Images/textanalytics.jpg');
-        }
-        else if (id == "10") {
-            this.imgurl = "virtualreality.jpg"
-            this.imgurlHtml = require('../../../Images/virtualreality.jpg');
-        }
-        else if (id == "11") {
+        //    this.imgurl = "bigdata.jpg"
+        //    this.imgurlHtml = require('../../../Images/bigdata.jpg');
+        //}
+        //else if (id == "3") {
+        //    this.imgurl = "breakingbad.jpg"
+        //    this.imgurlHtml = require('../../../Images/breakingbad.jpg');
+        //}
+        //else if (id == "4") {
+        //    this.imgurl = "gameofthrones.jpg"
+        //    this.imgurlHtml = require('../../../Images/gameofthrones.jpg');
+        //}
+        //else if (id == "5") {
+        //    this.imgurl = "imageprocessing.jpg"
+        //    this.imgurlHtml = require('../../../Images/imageprocessing.jpg');
+        //}
+        //else if (id == "6") {
+        //    this.imgurl = "mobilephones.jpg"
+        //    this.imgurlHtml = require('../../../Images/mobilephones.jpg');
+        //}
+        //else if (id == "7") {
+        //    this.imgurl = "petanimal.jpg"
+        //    this.imgurlHtml = require('../../../Images/petanimal.jpg');
+        //}
+        //else if (id == "8") {
+        //    this.imgurl = "socialnetwork.jpg"
+        //    this.imgurlHtml = require('../../../Images/socialnetwork.jpg');
+        //}
+        //else if (id == "9") {
+        //    this.imgurl = "textanalytics.jpg"
+        //    this.imgurlHtml = require('../../../Images/textanalytics.jpg');
+        //}
+        //else if (id == "10") {
+        //    this.imgurl = "virtualreality.jpg"
+        //    this.imgurlHtml = require('../../../Images/virtualreality.jpg');
+        //}
+        if (id == "1") {
             this.imgurl = "youtube.jpg"
             this.imgurlHtml = require('../../../Images/youtube.jpg');
         }
-        else if (id == "12") {
+        else if (id == "2") {
             this.imgurl = "bitcoin.jpg"
             this.imgurlHtml = require('../../../Images/bitcoin.jpg');
         }
